@@ -2,9 +2,9 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity MyAnd is
-    port (  a_and : in  std_logic;
-            b_and : in  std_logic;
-            x_and : out std_logic);
+    port (  a_and : in  std_ulogic;
+            b_and : in  std_ulogic;
+            x_and : out std_ulogic);
 end MyAnd;
 
 architecture TWOAND of MyAnd is

@@ -10,6 +10,7 @@
 *.drc
 *.exe
 *.ini
+*.ipf
 *.ll
 *.log
 *.lso
@@ -26,14 +27,19 @@
 *.ptwx
 *.rbb
 *.rbd
+*.spl
 *.stx
+*.sym
 *.syr
 *.twr
 *.twx
 *.unroutes
 *.ut
+*.xml
 *.xpi
+*.xsl
 *.xst
+*.xwbt
 *_bitgen.xwbt
 *_envsettings.html
 *_map.map
@@ -65,6 +71,7 @@ xlnx_auto_0_xdb/
 xst/
 _ngo/
 _xmsgs/
+netgen/
 
 # planahead files
 planAhead_run_1/

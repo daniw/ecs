@@ -8,13 +8,13 @@ architecture TB of tb_MyNand is
 
     -- component declaration for module under test
     component mynand
-    port (  a   : in    std_logic;
-            b   : in    std_logic;
-            x   : out   std_logic);
+    port (  a   : in    std_ulogic;
+            b   : in    std_ulogic;
+            x   : out   std_ulogic);
     end component mynand;
 
     -- signal declaration
-    signal u, v, w : std_logic;
+    signal u, v, w : std_ulogic;
 
 begin
 
@@ -26,13 +26,13 @@ begin
 
     process
 
-        -- variable actual, expected, check_fail : std_logic := '0';
+        -- variable actual, expected, check_fail : std_ulogic := '0';
 
         -----------------------------------------------------------------------
         -- procedure for testing automatically
-        procedure testcase (in_a : in std_logic;
-                            in_b : in std_logic) is
-        variable actual, expected, check_fail : std_logic := '0';
+        procedure testcase (in_a : in std_ulogic;
+                            in_b : in std_ulogic) is
+        variable actual, expected, check_fail : std_ulogic := '0';
         begin
             -- connect given input signals to DUT
             u <= in_a;
@@ -47,13 +47,13 @@ begin
             check_fail := actual xor expected;
             if check_fail = '1' then
                 report "ERROR for input pattern: " &
-                std_logic'image(u) & " " & std_logic'image(v) &
-                "\n actual: "  & std_logic'image(actual) & 
-                " expected: " & std_logic'image(expected)
+                std_ulogic'image(u) & " " & std_ulogic'image(v) &
+                "\n actual: "  & std_ulogic'image(actual) & 
+                " expected: " & std_ulogic'image(expected)
                 severity failure;
             else
-                report "Input pattern: " & std_logic'image(u) &
-                " " & std_logic'image(v) & " tested OK."
+                report "Input pattern: " & std_ulogic'image(u) &
+                " " & std_ulogic'image(v) & " tested OK."
                 severity note;
             end if;
         end procedure testcase;

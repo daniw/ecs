@@ -2,24 +2,24 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity MyNand is
-    port (  a   : in    std_logic;
-            b   : in    std_logic;
-            x   : out   std_logic);
+    port (  a   : in    std_ulogic;
+            b   : in    std_ulogic;
+            x   : out   std_ulogic);
 end MyNand;
 
 architecture TWONAND of MyNand is   -- Connection from and to inv
     
-    signal  tmp : std_logic;
+    signal  tmp : std_ulogic;
 
     component myand
-    port (  a_and : in  std_logic;
-            b_and : in  std_logic;
-            x_and : out std_logic);
+    port (  a_and : in  std_ulogic;
+            b_and : in  std_ulogic;
+            x_and : out std_ulogic);
     end component myand;
 
     component myinv
-    port (  a_inv : in  std_logic;
-            x_inv : out std_logic);
+    port (  a_inv : in  std_ulogic;
+            x_inv : out std_ulogic);
     end component myinv;
 
 begin

@@ -1,0 +1,6 @@
+
+# Manually created physical constraints
+
+NET "a" LOC = N17;  # Input a of NAND
+NET "b" LOC = H18;  # Input b of NAND
+NET "x" LOC = F9;   # Output x of NAND
