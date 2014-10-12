@@ -91,6 +91,8 @@ begin
         end if;
       end loop;
     end loop;
+    report "Simulation completed - Waiting for 8hr";
+    wait for 153min;
     report "o.k. Simulation done" severity failure; -- failure: stop simulation 
                                                     -- note: continue simulation
     wait; -- suspend process forever
