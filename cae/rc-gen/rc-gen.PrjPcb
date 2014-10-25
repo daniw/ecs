@@ -71,7 +71,7 @@ GenerateClassCluster=0
 DocumentUniqueId=FECQBKFR
 
 [Document3]
-DocumentPath=rc-gen-pcb.OutJob
+DocumentPath=rc-gen-sch.OutJob
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -88,7 +88,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document4]
-DocumentPath=rc-gen-sch.OutJob
+DocumentPath=rc-gen-pcb.OutJob
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -130,7 +130,7 @@ GlobalBookmarks=0
 ExportBOM=-1
 TemplateFilename=
 TemplateStoreRelative=-1
-PCB_PrintColor=1
+PCB_PrintColor=0
 SCH_PrintColor=1
 PrintQuality=-3
 SCH_ShowNoErc=-1
