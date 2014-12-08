@@ -91,11 +91,74 @@ package mcu_pkg is
   -----------------------------------------------------------------------------
   -- CPU internal types and
   -----------------------------------------------------------------------------
-  -- t.b.d.
+  type t_alu2reg is record
+    result        : std_logic_vector(DW-1 downto 0);
+  end record;
+  type t_reg2alu is record
+    op1           : std_logic_vector(DW-1 downto 0);
+    op2           : std_logic_vector(DW-1 downto 0);
+  end record;
+  type t_flag is record
+    Z             : std_logic;
+    N             : std_logic;
+    C             : std_logic;
+    O             : std_logic;
+  end record;
+  type t_ctrl2alu is record
+    op            : t_opcode;
+    enb           : std_logic;
+  end record;
+  type t_alu2ctrl is record
+    flag          : t_flag;
+  end record;
+  type t_ctrl2reg is record
+    data          : std_logic_vector(DW-1 downto 0);
+    src1          : std_logic_vector(2 downto 0);
+    src2          : std_logic_vector(2 downto 0);
+    dest          : std_logic_vector(2 downto 0);
+    enb_res       : std_logic;
+    enb_data_low  : std_logic;
+    enb_data_high : std_logic;
+  end record;
+  type t_reg2ctrl is record
+    data          : std_logic_vector(DW-1 downto 0);
+    addr          : std_logic_vector(AW-1 downto 0);
+  end record;
+  type t_ctrl2prc is record
+    addr          : std_logic_vector(AW-1 downto 0);
+    mode          : std_logic; -- ?????????
+    enb           : std_logic;
+  end record;
+  type t_prc2ctrl is record
+    pc            : std_logic_vector(7 downto 0);
+    exc           : std_logic_vector; -- ????????
+  end record;
   
   -----------------------------------------------------------------------------
   -- CPU instruction set
   -----------------------------------------------------------------------------
-  -- t.b.d.
+  type t_opcode is := (
+    add   => "00000",
+    sub   => "00001",
+    andi  => "00010",
+    ori   => "00011",
+    xori  => "00100",
+    slai  => "00101",
+    srai  => "00110",
+    mov   => "00111",
+    ----------------------------------------------------------------------------
+    addil => "01100",
+    addih => "01101",
+    ----------------------------------------------------------------------------
+    ld    => "10000",
+    st    => "10001",
+    ----------------------------------------------------------------------------
+    jmp   => "11000",
+    bne   => "11001",
+    bge   => "11010",
+    blt   => "11011",
+    ----------------------------------------------------------------------------
+    nop   => "11111"
+  );
   
 end mcu_pkg;
