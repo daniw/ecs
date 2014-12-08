@@ -56,7 +56,6 @@ package mcu_pkg is
   end record;
   -- Read-only slave bus interface  -------------------------------------------
   type t_bus2ros is record
-    data    : std_logic_vector(DW-1 downto 0);
     addr    : std_logic_vector(AWL-1 downto 0);
   end record;
   type t_ros2bus is record

@@ -23,7 +23,7 @@ end ram;
 
 architecture rtl of ram is
 
-  type t_ram is array (0 to 2**AW-1) of std_logic_vector(DW-1 downto 0);
+  type t_ram is array (0 to 2**AWL-1) of std_logic_vector(DW-1 downto 0);
   signal ram    : t_ram;
   signal r_addr : std_logic_vector(AW-1 downto 0);
   
