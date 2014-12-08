@@ -53,28 +53,53 @@ entity buss is
 end buss;
 
 architecture rtl of buss is 
+
+  signal slave      : std_logic_vector(AWH - 1 downto 0);
+  signal slave_reg  : std_logic_vector(AWH - 1 downto 0);
   
 begin
 
-  -- dummy to avoid optimization
-  ram_out.data <= cpu_in.data;
-  ram_out.addr <= cpu_in.addr(AWL-1 downto 0);
-  ram_out.we   <= cpu_in.r_w;
-  cpu_out.data <= ram_in.data;
-  
   -----------------------------------------------------------------------------
   -- address decoding
   -----------------------------------------------------------------------------
-  -- t.b.d.
+  rom_out.addr  <= cpu_in.addr(AWL-1 downto 0);
+  ram_out.addr  <= cpu_in.addr(AWL-1 downto 0);
+  gpio_out.addr <= cpu_in.addr(AWL-1 downto 0);
+  lcd_out.addr  <= cpu_in.addr(AWL-1 downto 0);
+  slave         <= cpu_in.addr(AW-1 downto AWL);
+  
 
-  -----------------------------------------------------------------------------
+  ------------------------------------------------------------------------------
   -- write transfer logic
   -----------------------------------------------------------------------------
-  -- t.b.d.
+  ram_out.data  <= cpu_in.data;
+  gpio_out.data <= cpu_in.data;
+  lcd_out.data  <= cpu_in.data;
+  ram_out.we    <= cpu_in.r_w when slave_reg = "01" else '0';
+  gpio_out.we   <= cpu_in.r_w when slave_reg = "10" else '0';
+  lcd_out.we    <= cpu_in.r_w when slave_reg = "11" else '0';
+  
  
   -----------------------------------------------------------------------------
   -- read transfer logic
   -----------------------------------------------------------------------------
-  -- t.b.d
-  
+  with slave_reg select 
+    cpu_out.data <= 
+      rom_in.data     when "00",
+      ram_in.data     when "01",
+      gpio_in.data    when "10",
+      lcd_in.data     when "11",
+      (others => '0') when others;
+
+  -----------------------------------------------------------------------------
+  -- FF to buffer slave
+  -----------------------------------------------------------------------------
+  P_slave_reg: process(rst, clk) begin
+    if (rst = '1') then
+      slave_reg <= "00";
+    elsif (rising_edge(clk)) then
+      slave_reg <= slave;
+    end if;
+  end process;
+
 end rtl;
